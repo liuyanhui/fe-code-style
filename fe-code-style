@@ -1,0 +1,226 @@
+文档目的
+      本文档旨在为前端开发提供一个编码的标准，以期提高开发部的前端代码质量，使整个团队的代码保持一致，从而能够更好的阅读和维护代码。
+      默认采用Goolge的前端语言规范。
+      由于水平有限，后续这个文档需要大家共同维护。
+      欢迎拍砖。
+
+前端通用规范
+文件命名规范
+       
+       文件名应该使用小写字符， 以避免在有些系统平台上不识别大小写的命名方式。 文件名不要包含除 - 和 _ 外的标点符号(使用 - 优于 _)。
+       每一个项目一定要统一使用一种风格的命名格式。
+      文件名分隔符用中划线连接，版本连接符用实心点，合并文件的文件名连接符用下划线，如：passport-core.min.js和reset-1.0_utils-1.0.css。
+
+引用资源省略协议头
+
+        省略图像、媒体文件、样式表和脚本等URL协议头部声明 ( http: ， https: )。如果不是这两个声明的URL则不省略。
+<!-- 不推荐 -->
+<script src="http://www.google.com/js/gweb/analytics/autotrack.js"></script>
+<!-- 推荐 -->
+<script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
+
+/* 不推荐 */
+.example {
+  background: url(http://www.google.com/images/example);
+}
+/* 推荐 */
+.example {
+  background: url(//www.google.com/images/example);
+}
+编码格式
+        一般来说采用utf-8的编码格式，除非项目要求使用其他的编码格式。
+       在HTML模板和文件中指定编码 <meta charset="utf-8">。
+       不需要制定CSS的编码，它默认为UTF-8。
+       JS文件创建是需要指定保存格式为UTF-8。
+
+排版规则
+缩进
+       
+       每次缩进两个空格。不要用TAB键或多个空格来进行缩进。
+
+大小写
+       
+       Html和CSS文件中只用小写字母。所有的代码都用小写字母：适用于元素名，属性，属性值（除了文本和 CDATA ）， 选择器，特性，特性值（除了字符串）。
+<!-- 不推荐 -->
+<A HREF="/">Home</A>
+<!-- 推荐 -->
+<img src="google.png" alt="Google">
+       
+行尾空格
+       
+       删除所有的行为空格。
+
+HTML语言规范
+DOCTYPE
+       选择合适的DOCTYPE。
+       外部系统现阶段统一使用XHTML1.0 Transitional标准：<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+       内部系统和移动端使用HTML5标准。 <!DOCTYPE html> .
+
+书写规范
+type属性
+       省略<style>和<script>的type属性。
+<!-- 不推荐 -->
+<link rel="stylesheet" href="//www.google.com/css/maia.css"
+  type="text/css">
+<!-- 推荐 -->
+<link rel="stylesheet" href="//www.google.com/css/maia.css">
+<!-- 不推荐 -->
+<script src="//www.google.com/js/gweb/analytics/autotrack.js"
+  type="text/javascript"></script>
+<!-- 推荐 -->
+<script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
+
+块级元素
+
+       为每个块级元素或表格元素标签新起一行，并且对每个子元素进行缩进。
+
+标签关闭
+
+       代码书写严格参照xhtml规范，标签必须全是小写，所有标签都要关闭，即有开始和结束标签，包括单个的标签<br>等。<div>…</div> 标签成对出现。
+单个的标签应该使用“/”自关闭，“/”前必须有一个空格。如：
+<hr />
+<br />
+<input typte=“text” />
+<img src=“xxx.jpg” alt=“xxx” />
+      <link rel="stylesheet" type="text/css" href="xxx.css" />
+其他规范
+
+所有的属性必须用双引号""括起来
+为了版本比较低的浏览器，应该同时使用name和id属性，并使它们两个的值相同的，像这样:<img src="picture.gif" id="picture1" name="picture1" />
+同一个id选择器不可重复使用，一个网页中id=”xx”同一个选择器不能重复使用，若需要重复请用class=”xx”。
+不使用已经废弃的标签，如<center>等。
+页面中尽量少使用table，使用div，span等标签替代，使结构与样式分离。
+尽量不要使用colspan，rowspan两个属性，会引起兼容性问题。
+语义化标签，尽量使用html含样式标签替代div,span,p等无意义的标签，使用h1-h6作页面的标题，使用ul，ol，dl作列表。
+原始写法：
+<div class=“list”>
+  <div>item1</div>
+  <div>item2</div>
+  <div>item3</div>
+</div>
+改进写法：（这时就算将全部的css去掉也能显示成列表布局）
+<ul class=“list”>
+  <li>item1</li>
+  <li>item1</li>
+  <li>item1</li>
+</ul>
+
+
+代码检测工具
+
+使用W3C HTML validator之类的工具来进行检测代码的书写规范。
+
+多媒体后备方案
+       对于多媒体，如图像，视频，通过 canvas 读取的动画元素，确保提供备选方案。 对于图像使用有意义的备选文案（ alt ） 对于视频和音频使用有效的副本和文案说明。
+         注：图像的 alt 属性会产生冗余，如果使用图像只是为了不能立即用CSS而装饰的 ，就不需要用备选文案了，可以写 alt="" 。
+<!-- 不推荐 -->
+<img src="spreadsheet.png" />
+<!-- 推荐 -->
+<img src="spreadsheet.png" alt="电子表格截图" />
+
+JavaScript 语言规范
+
+声明
+
+变量声明必须加var关键字，并且严格控制作用域。
+变量建议使用驼峰式命名变量和函数，如：functionNamesLikeThis, variableNamesLikeThis, ClassNamesLikeThis,namespaceNamesLikeThis。
+文件或类中的 私有 属性, 变量和方法名应该以下划线 "_" 开头，如：var _this。
+常量定义单词全部大写，以下划线连接，但不要用const关键字来声明，如：SOME_CONSTANTS。
+禁止在代码块中声明函数，例如：if (true) {function foo() {}}。
+禁止用new来实例化基本类型，错误的范例：var x = new Boolean(false)；
+直接定义数组或对象，而不使用new关键字声明，错误的范例：var a = new Array();var o = new Object()；正确的写法为：var a = [];var o = {};
+使用单引号来定义字符串；
+
+代码格式化
+
+禁止使用with语句。
+不要省略句末的分号。
+所有函数都在使用之前定义。
+不要将不同目的的语句，合并成一行。
+
+代码检测工具
+
+离线检测工具
+
+Google JSLint 下载地址 http://code.google.com/p/jslint-toolkit/
+确保本机安装了JRE1.5或以上
+解压压缩包
+将需要的检查的文件放到scripts\file目录下，把config.json文件中includes修改为： "includes": ["scripts\\file"],
+点击run.bat，可以进行规范检查
+结束后，察看out\index.html文件，可以看到违规的地方，检查修改，并重复3，4直到达到要求
+       编写JS代码前先熟悉一下doc\index.htm 文件，对于规范的约定有个熟悉后再编写代码，事半功倍。
+
+在线监测工具
+
+       http://www.jslint.com/
+
+CSS规范
+
+
+引用规范
+
+       所有的css代码都写到一个css文件中，使用<link rel="stylesheet" href="xxx.css" />引入到页面中。
+
+ID和class的命名
+
+ ID和class的命名尽可能短，并符合语义
+/* 不推荐 */
+#navigation {}
+.atr {}
+/* 推荐 */
+#nav {}
+.author {}
+ ID和class名字有多单词组合的用短破折号“-”分开。不要在选择器名字里使用短破折号“-”以外的连接词(包括什么都不写)， 以便根据名字进行理解和查找。
+（可选）选择器前面加上特殊应用标识的前缀。大型项目中最好在ID或class名字前加上这种标识性前缀（命名空间），使用短破折号链接。使用命名空间可以防止命名冲突，方便维护，比如在搜索和替换操作上。
+
+类型选择器
+       避免使用CSS类型选择器。
+        非必要的情况下不要使用元素标签名和ID或class进行组合。
+        出于性能上的考虑避免使用父节点做选择器
+/* 不推荐 */
+ul#example {}
+div.error {}
+/* 推荐 */
+#example {}
+.error {}
+
+属性缩写
+       写属性值的时候尽量使用缩写。CSS很多属性都支持缩写（例如 font ）尽量使用缩写，甚至只设置一个值。
+       使用缩写可以提高代码的效率和方便理解。
+/* 不推荐 */
+border-top-style: none;
+font-family: palatino, georgia, serif;
+font-size: 100%;
+line-height: 1.6;
+padding-bottom: 2em;
+padding-left: 1em;
+padding-right: 1em;
+padding-top: 0;
+/* 推荐 */
+border-top: 0;
+font: 100%/1.6 palatino, georgia, serif;
+padding: 0 1em 2em;
+
+代码检测工具
+
+       通过W3C CSS validator来进行验证
+
+
+参考资料
+中文资料
+http://www.chaozh.com/google-front-end-style-guide/#HTML
+http://alloyteam.github.io/JX/doc/specification/google-javascript.xml
+http://chajn.org/htmlcssguide/htmlcssguide.html
+http://style-guidelines.readthedocs.org/en/latest/guidelines/HTML.html#id2
+http://www.uml.org.cn/codeNorms/201112125.asp
+https://docs.google.com/a/rongxintx.com/document/d/16kA_1bOsMFwoQmcBDj24xbxErhIe1OpUheuaB5ZDmAk/edit#
+http://www.cnblogs.com/2050/archive/2012/04/26/2470947.html
+http://www.ruanyifeng.com/blog/2012/04/javascript_programming_style.html
+https://github.com/hiwanz/javascript-style-reference
+http://www.cnblogs.com/2018/archive/2010/10/04/1841978.html
+
+英文资料
+
+http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+
+http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
